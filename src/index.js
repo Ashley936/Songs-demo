@@ -1,17 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from "react-dom";
+import React from "react";
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import App from "./components/App";
+import reducers from './reducers';
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+    <Provider store={createStore(reducers)}>
+        <App />
+    </Provider>,
+    document.querySelector("#root"));
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// provider(contains refrence to reduxStore as prop(not action creaters)) => App => connect (communicates to provider using context system and provide the diff. state and action creaters as props to the child) => child components 
+
+//context system allowns parent component to communicate with any child component evenif they hv components between them
